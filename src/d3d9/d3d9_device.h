@@ -44,7 +44,8 @@
 namespace dxvk {
 
   class D3D9InterfaceEx;
-  class D3D9SwapChainEx;
+  class D3D9SwapChainExInternal;
+  class D3D9SwapChainEx : public D3D9SwapChainExInternal;
   class D3D9CommonTexture;
   class D3D9CommonBuffer;
   class D3D9CommonShader;
@@ -129,7 +130,7 @@ namespace dxvk {
 
     constexpr static VkDeviceSize StagingBufferSize = 4ull << 20;
 
-    friend class D3D9SwapChainEx;
+    friend class D3D9SwapChainExInternal;
     friend struct D3D9WindowContext;
     friend class D3D9ConstantBuffer;
     friend class D3D9UserDefinedAnnotation;
@@ -1322,7 +1323,7 @@ namespace dxvk {
 
     Com<D3D9Surface, false>         m_autoDepthStencil;
 
-    Com<D3D9SwapChainEx, false>     m_implicitSwapchain;
+    Com<D3D9SwapChainExInternal, false> m_implicitSwapchain;
 
     const D3D9Options               m_d3d9Options;
     DxsoOptions                     m_dxsoOptions;

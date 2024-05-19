@@ -7883,7 +7883,7 @@ namespace dxvk {
         return hr;
     }
     else {
-      m_implicitSwapchain = new D3D9SwapChainEx(this, pPresentationParameters, pFullscreenDisplayMode);
+      m_implicitSwapchain = new D3D9SwapChainExInternal(this, pPresentationParameters, pFullscreenDisplayMode);
       m_mostRecentlyUsedSwapchain = m_implicitSwapchain.ptr();
     }
 

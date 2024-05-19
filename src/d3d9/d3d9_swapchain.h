@@ -59,18 +59,18 @@ namespace dxvk {
   };
 
   using D3D9SwapChainExBase = D3D9DeviceChild<IDirect3DSwapChain9Ex>;
-  class D3D9SwapChainEx final : public D3D9SwapChainExBase {
+  class D3D9SwapChainExInternal : public D3D9SwapChainExBase {
     static constexpr uint32_t NumControlPoints = 256;
 
     friend class D3D9VkExtSwapchain;
   public:
 
-    D3D9SwapChainEx(
+    D3D9SwapChainExInternal(
             D3D9DeviceEx*          pDevice,
             D3DPRESENT_PARAMETERS* pPresentParams,
       const D3DDISPLAYMODEEX*      pFullscreenDisplayMode);
 
-    ~D3D9SwapChainEx();
+    ~D3D9SwapChainExInternal();
 
     HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject);
 
@@ -265,6 +265,17 @@ namespace dxvk {
 
       return true;
     }
+  };
+
+  class D3D9SwapChainEx final : public D3D9SwapChainExInternal{
+  public:
+
+    D3D9SwapChainEx(
+            D3D9DeviceEx*          pDevice,
+            D3DPRESENT_PARAMETERS* pPresentParams,
+      const D3DDISPLAYMODEEX*      pFullscreenDisplayMode)
+      : D3D9SwapChainExInternal(pDevice, pPresentParams, pFullscreenDisplayMode) {
+      }
   };
 
 }
