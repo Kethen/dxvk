@@ -266,7 +266,7 @@ namespace dxvk {
           DWORD                  BehaviorFlags,
           D3DPRESENT_PARAMETERS* pPresentationParameters,
           IDirect3DDevice9**     ppReturnedDeviceInterface) {
-    return this->CreateDeviceEx(
+    return this->CreateDeviceBase(
       Adapter,
       DeviceType,
       hFocusWindow,
@@ -339,8 +339,25 @@ namespace dxvk {
     return D3DERR_INVALIDCALL;
   }
 
-
   HRESULT STDMETHODCALLTYPE D3D9InterfaceEx::CreateDeviceEx(
+          UINT                   Adapter,
+          D3DDEVTYPE             DeviceType,
+          HWND                   hFocusWindow,
+          DWORD                  BehaviorFlags,
+          D3DPRESENT_PARAMETERS* pPresentationParameters,
+          D3DDISPLAYMODEEX*      pFullscreenDisplayMode,
+          IDirect3DDevice9Ex**   ppReturnedDeviceInterface) {
+    return this->CreateDeviceBase(
+      Adapter,
+      DeviceType,
+      hFocusWindow,
+      BehaviorFlags,
+      pPresentationParameters,
+      pFullscreenDisplayMode,
+      ppReturnedDeviceInterface);
+  }
+
+  HRESULT STDMETHODCALLTYPE D3D9InterfaceEx::CreateDeviceBase(
           UINT                   Adapter,
           D3DDEVTYPE             DeviceType,
           HWND                   hFocusWindow,

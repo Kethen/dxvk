@@ -1450,6 +1450,12 @@ namespace dxvk {
     D3D9VkInteropDevice             m_d3d9Interop;
     D3D9On12                        m_d3d9On12;
     DxvkD3D8Bridge                  m_d3d8Bridge;
-  };
 
+    HRESULT STDMETHODCALLTYPE PresentBase(
+      const RECT*    pSourceRect,
+      const RECT*    pDestRect,
+            HWND     hDestWindowOverride,
+      const RGNDATA* pDirtyRegion,
+            DWORD    dwFlags);
+  };
 }

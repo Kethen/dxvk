@@ -151,6 +151,14 @@ namespace dxvk {
 
     D3D9VkInteropInterface        m_d3d9Interop;
 
+    HRESULT STDMETHODCALLTYPE CreateDeviceBase(
+            UINT                   Adapter,
+            D3DDEVTYPE             DeviceType,
+            HWND                   hFocusWindow,
+            DWORD                  BehaviorFlags,
+            D3DPRESENT_PARAMETERS* pPresentationParameters,
+            D3DDISPLAYMODEEX*      pFullscreenDisplayMode,
+            IDirect3DDevice9Ex**   ppReturnedDeviceInterface);
   };
 
 }

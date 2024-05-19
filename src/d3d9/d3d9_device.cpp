@@ -504,7 +504,7 @@ namespace dxvk {
     const RECT*    pDestRect,
           HWND     hDestWindowOverride,
     const RGNDATA* pDirtyRegion) {
-    return PresentEx(
+    return PresentBase(
       pSourceRect,
       pDestRect,
       hDestWindowOverride,
@@ -3751,8 +3751,22 @@ namespace dxvk {
     return D3D_OK;
   }
 
-
   HRESULT STDMETHODCALLTYPE D3D9DeviceEx::PresentEx(
+    const RECT* pSourceRect,
+    const RECT* pDestRect,
+          HWND hDestWindowOverride,
+    const RGNDATA* pDirtyRegion,
+          DWORD dwFlags) {
+    return PresentBase(
+      pSourceRect,
+      pDestRect,
+      hDestWindowOverride,
+      pDirtyRegion,
+      dwFlags
+    );
+  }
+
+  HRESULT STDMETHODCALLTYPE D3D9DeviceEx::PresentBase(
     const RECT* pSourceRect,
     const RECT* pDestRect,
           HWND hDestWindowOverride,
